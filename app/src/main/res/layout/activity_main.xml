@@ -7,13 +7,16 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+<!-- TODO: Update to snake_case view ids -->
+
     <EditText
         android:id="@+id/etCostOfService"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:tooltipText="Input the cost of service"
         android:hint="Cost of Service"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:tooltipText="Input the cost of service"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,6 +24,7 @@
         android:id="@+id/tvServiceQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:text="How was the service?"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCostOfService" />
@@ -78,14 +82,40 @@
         app:layout_constraintTop_toBottomOf="@+id/swRoundUp" />
 
     <TextView
+        android:id="@+id/tvTipLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tip Amount: "
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
+
+    <TextView
         android:id="@+id/tvTipAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
         android:text="$0.00"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="32sp"
+        app:layout_constraintStart_toEndOf="@+id/tvTipLabel"
         app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
+
+    <TextView
+        android:id="@+id/tvTotalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
+
+    <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$0:00"
+        android:textSize="32sp"
+        app:layout_constraintStart_toEndOf="@+id/tvTipLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipAmount" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

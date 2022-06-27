@@ -3,36 +3,47 @@ package org.hacdan.tiptime
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import kotlin.math.round
-import kotlin.math.roundToInt
+import androidx.appcompat.widget.SwitchCompat
+import kotlin.String
+
+// TODO: Convert to View Bindings
+// TODO: Add logging
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var btnCalculate = findViewById<Button>(R.id.btnCalculate)
-        var tvTipAmount = findViewById<TextView>(R.id.tvTipAmount)
+        val btnCalculate = findViewById<Button>(R.id.btnCalculate)
+        val tvTipAmount = findViewById<TextView>(R.id.tvTipAmount)
+        val etCostOfService = findViewById<EditText>(R.id.etCostOfService)
+        val tvTotal = findViewById<TextView>(R.id.tvTotal)
 
         btnCalculate.setOnClickListener{
-            var tip = calculateTip()
-            """${"$"}${tip}""".also { tvTipAmount.text = it }
+            val costOfService = etCostOfService.text.toString().toDouble()
+            val tip = calculateTip()
+            val total = costOfService + tip
+
+            """${"$"}${String.format("%.2f",tip)}""".also { tvTipAmount.text = it }
+            """${"$"}${String.format("%.2f",total)}""".also { tvTotal.text = it }
         }
     }
 
     private fun calculateTip(): Double {
-        var rgTipOptions = findViewById<RadioGroup>(R.id.rgTipOptions)
-        var etCostOfService = findViewById<EditText>(R.id.etCostOfService)
+        val rgTipOptions = findViewById<RadioGroup>(R.id.rgTipOptions)
+        val etCostOfService = findViewById<EditText>(R.id.etCostOfService)
+        val swRoundTip = findViewById<SwitchCompat>(R.id.swRoundUp)
+        val roundTip = swRoundTip.isChecked
 
         var tipPercent = 0.0
 
         if (etCostOfService.text.isEmpty()) {
-            Toast.makeText(this@MainActivity, "Please enter a cost of service before caclulating", Toast.LENGTH_SHORT).show()
-            return 0.0
+            Toast.makeText(this@MainActivity, "Please enter a cost of service before calculating", Toast.LENGTH_SHORT).show()
+            return 0.00
         }
         if (rgTipOptions.checkedRadioButtonId == -1){
             Toast.makeText(this@MainActivity, "Please be sure to select how the service was.", Toast.LENGTH_SHORT).show()
-            return 0.0
+            return 0.00
         }
         when(rgTipOptions.checkedRadioButtonId) {
             R.id.rbAmazing -> tipPercent = 0.2
@@ -40,8 +51,9 @@ class MainActivity : AppCompatActivity() {
             R.id.rbOkay -> tipPercent = 0.15
         }
         var tip = etCostOfService.text.toString().toDouble() * tipPercent
-        // TODO: Update rounding to use textFormat as opposed to roundToInt
-        // TODO: Implement Round up tip option
-        return (tip * 100.0).roundToInt() / 100.0
+        if (roundTip) {
+            tip = kotlin.math.ceil(tip)
+        }
+        return tip
     }
 }
