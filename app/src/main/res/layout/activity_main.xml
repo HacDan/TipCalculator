@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".MainActivity">
-
-<!-- TODO: Update to snake_case view ids -->
+    <!-- TODO: Update to snake_case view ids -->
 
     <EditText
         android:id="@+id/etCostOfService"
