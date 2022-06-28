@@ -14,45 +14,55 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnCalculate = findViewById<Button>(R.id.btnCalculate)
-        val tvTipAmount = findViewById<TextView>(R.id.tvTipAmount)
-        val etCostOfService = findViewById<EditText>(R.id.etCostOfService)
-        val tvTotal = findViewById<TextView>(R.id.tvTotal)
+        val btnCalculate = findViewById<Button>(R.id.btn_calculate)
+        val tvTipAmount = findViewById<TextView>(R.id.tv_tip_amount)
+        val etCostOfService = findViewById<EditText>(R.id.et_cost_of_service)
+        val tvTotal = findViewById<TextView>(R.id.tv_total)
+        val rgTipOptions = findViewById<RadioGroup>(R.id.rg_tip_options)
 
         btnCalculate.setOnClickListener{
-            val costOfService = etCostOfService.text.toString().toDouble()
-            val tip = calculateTip()
-            val total = costOfService + tip
+            if (etCostOfService.text.isEmpty()) {
+                Toast.makeText(this@MainActivity, "Please enter a cost of service before calculating", Toast.LENGTH_SHORT).show()
+            } else if (rgTipOptions.checkedRadioButtonId == -1){
+                Toast.makeText(this@MainActivity, "Please be sure to select how the service was.", Toast.LENGTH_SHORT).show()
+            } else {
+                val costOfService = etCostOfService.text.toString().toDouble()
+                val tip = calculateTip()
+                val total = costOfService + tip
 
-            """${"$"}${String.format("%.2f",tip)}""".also { tvTipAmount.text = it }
-            """${"$"}${String.format("%.2f",total)}""".also { tvTotal.text = it }
+                """${"$"}${
+                    String.format(
+                        "%.2f",
+                        tip
+                    )
+                }""".also { tvTipAmount.text = it }
+                """${"$"}${
+                    String.format(
+                        "%.2f",
+                        total
+                    )
+                }""".also { tvTotal.text = it }
+            }
         }
     }
 
     private fun calculateTip(): Double {
-        val rgTipOptions = findViewById<RadioGroup>(R.id.rgTipOptions)
-        val etCostOfService = findViewById<EditText>(R.id.etCostOfService)
-        val swRoundTip = findViewById<SwitchCompat>(R.id.swRoundUp)
+        val rgTipOptions = findViewById<RadioGroup>(R.id.rg_tip_options)
+        val etCostOfService = findViewById<EditText>(R.id.et_cost_of_service)
+        val swRoundTip = findViewById<SwitchCompat>(R.id.sw_round_up)
         val roundTip = swRoundTip.isChecked
 
         var tipPercent = 0.0
 
-        if (etCostOfService.text.isEmpty()) {
-            Toast.makeText(this@MainActivity, "Please enter a cost of service before calculating", Toast.LENGTH_SHORT).show()
-            return 0.00
-        }
-        if (rgTipOptions.checkedRadioButtonId == -1){
-            Toast.makeText(this@MainActivity, "Please be sure to select how the service was.", Toast.LENGTH_SHORT).show()
-            return 0.00
-        }
         when(rgTipOptions.checkedRadioButtonId) {
-            R.id.rbAmazing -> tipPercent = 0.2
-            R.id.rbGood -> tipPercent = 0.18
-            R.id.rbOkay -> tipPercent = 0.15
+            R.id.rb_amazing -> tipPercent = 0.2
+            R.id.rb_good -> tipPercent = 0.18
+            R.id.rb_okay -> tipPercent = 0.15
         }
-        var tip = etCostOfService.text.toString().toDouble() * tipPercent
+        val tip = etCostOfService.text.toString().toDouble() * tipPercent
+
         if (roundTip) {
-            tip = kotlin.math.ceil(tip)
+            return kotlin.math.ceil(tip)
         }
         return tip
     }

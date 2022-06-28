@@ -6,115 +6,115 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".MainActivity">
-    <!-- TODO: Update to snake_case view ids -->
 
     <EditText
-        android:id="@+id/etCostOfService"
+        android:id="@+id/et_cost_of_service"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="Cost of Service"
+        android:hint="@string/cost_of_service"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        android:tooltipText="Input the cost of service"
+        android:textColorHint="#757575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <TextView
-        android:id="@+id/tvServiceQuestion"
+        android:id="@+id/tv_service_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="How was the service?"
+        android:text="@string/how_was_the_service"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCostOfService" />
+        app:layout_constraintTop_toBottomOf="@+id/et_cost_of_service" />
 
     <RadioGroup
-        android:id="@+id/rgTipOptions"
+        android:id="@+id/rg_tip_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvServiceQuestion">
+        app:layout_constraintTop_toBottomOf="@+id/tv_service_question">
 
         <RadioButton
-            android:id="@+id/rbAmazing"
+            android:id="@+id/rb_amazing"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Amazing (20%)" />
+            android:text="@string/service_amazing" />
 
         <RadioButton
-            android:id="@+id/rbGood"
+            android:id="@+id/rb_good"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Good (18%)" />
+            android:text="@string/service_good" />
 
         <RadioButton
-            android:id="@+id/rbOkay"
+            android:id="@+id/rb_okay"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Okay (15%)" />
+            android:text="@string/okay_15" />
     </RadioGroup>
 
     <TextView
-        android:id="@+id/tvRoundUp"
+        android:id="@+id/tv_round_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Round up tip?"
-        app:layout_constraintBottom_toTopOf="@+id/btnCalculate"
+        android:text="@string/round_up_tip"
+        app:layout_constraintBottom_toTopOf="@+id/btn_calculate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rgTipOptions" />
+        app:layout_constraintTop_toBottomOf="@+id/rg_tip_options" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/swRoundUp"
+        android:id="@+id/sw_round_up"
         android:layout_width="0dp"
         android:checked="true"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rgTipOptions" />
+        app:layout_constraintTop_toBottomOf="@+id/rg_tip_options" />
 
     <Button
-        android:id="@+id/btnCalculate"
+        android:id="@+id/btn_calculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="@string/calculate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swRoundUp" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_round_up" />
 
     <TextView
-        android:id="@+id/tvTipLabel"
+        android:id="@+id/tv_tip_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tip Amount: "
-        android:textSize="32sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
-
-    <TextView
-        android:id="@+id/tvTipAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$0.00"
-        android:textSize="32sp"
-        app:layout_constraintStart_toEndOf="@+id/tvTipLabel"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
-
-    <TextView
-        android:id="@+id/tvTotalLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total: "
+        android:text="@string/tip_amount"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_calculate" />
 
     <TextView
-        android:id="@+id/tvTotal"
+        android:id="@+id/tv_tip_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$0:00"
+        android:text="@string/initial_total"
         android:textSize="32sp"
-        app:layout_constraintStart_toEndOf="@+id/tvTipLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvTipAmount" />
+        app:layout_constraintStart_toEndOf="@+id/tv_tip_label"
+        app:layout_constraintTop_toBottomOf="@+id/btn_calculate" />
+
+    <TextView
+        android:id="@+id/tv_total_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tip_label" />
+
+    <TextView
+        android:id="@+id/tv_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_0_00"
+        android:textSize="32sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_tip_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tip_amount" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
