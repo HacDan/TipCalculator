@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".MainActivity">
+
+    <!-- TODO: Implement horizontal layout -->
+    <!-- TODO: Remove theme references on RadioButtons -->
+
     <ImageView
         android:id="@+id/ic_cost_of_service"
         android:layout_width="wrap_content"
@@ -46,7 +50,7 @@
         android:id="@+id/tv_service_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        style="@style/Widget.TipTime.TextView"
         android:text="@string/how_was_the_service"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@id/til_cost_of_service"
@@ -64,16 +68,19 @@
             android:id="@+id/rb_amazing"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            style="@style/Widget.TipTime.CompoundButton.RadioButton"
             android:text="@string/service_amazing" />
 
         <RadioButton
             android:id="@+id/rb_good"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            style="@style/Widget.TipTime.CompoundButton.RadioButton"
             android:text="@string/service_good" />
 
         <RadioButton
             android:id="@+id/rb_okay"
+            style="@style/Widget.TipTime.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/okay_15" />
@@ -93,6 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        style="@style/Widget.TipTime.TextView"
         android:text="@string/round_up_tip"
         app:layout_constraintStart_toEndOf="@id/ic_round_up"
         app:layout_constraintTop_toTopOf="@id/ic_round_up"
@@ -103,6 +111,7 @@
         android:layout_width="0dp"
         android:checked="true"
         android:layout_height="wrap_content"
+        style="@style/Widget.TipTime.CompoundButton.Switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/rg_tip_options"
         app:layout_constraintTop_toBottomOf="@+id/rg_tip_options" />
@@ -123,6 +132,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tip_amount"
         android:textSize="32sp"
+        style="@style/Widget.TipTime.TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_calculate" />
 
@@ -131,6 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/initial_total"
+        style="@style/Widget.TipTime.TextView"
         android:textSize="32sp"
         app:layout_constraintStart_toEndOf="@+id/tv_tip_label"
         app:layout_constraintTop_toBottomOf="@+id/btn_calculate" />
@@ -140,6 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/total"
+        style="@style/Widget.TipTime.TextView"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_tip_label" />
@@ -149,9 +161,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_0_00"
+        style="@style/Widget.TipTime.TextView"
         android:textSize="32sp"
         app:layout_constraintStart_toEndOf="@+id/tv_tip_label"
         app:layout_constraintTop_toBottomOf="@+id/tv_tip_amount" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

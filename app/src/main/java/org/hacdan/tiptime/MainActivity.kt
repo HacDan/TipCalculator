@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // TODO: Hide keyboard once editText loses focus
+
         binding.btnCalculate.setOnClickListener{
             if (binding.etCostOfService.text?.isEmpty() as Boolean) {
                 Toast.makeText(this@MainActivity, "Please enter a cost of service before calculating", Toast.LENGTH_SHORT).show()
