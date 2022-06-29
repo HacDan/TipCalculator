@@ -2,15 +2,18 @@ package org.hacdan.tiptime
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import kotlin.String
 
 // TODO: Convert to View Bindings
-// TODO: Add logging
+
+private val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.v(TAG, "Entered onCreate")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -23,12 +26,17 @@ class MainActivity : AppCompatActivity() {
         btnCalculate.setOnClickListener{
             if (etCostOfService.text.isEmpty()) {
                 Toast.makeText(this@MainActivity, "Please enter a cost of service before calculating", Toast.LENGTH_SHORT).show()
+                Log.v(TAG, "No cost of service entered")
             } else if (rgTipOptions.checkedRadioButtonId == -1){
                 Toast.makeText(this@MainActivity, "Please be sure to select how the service was.", Toast.LENGTH_SHORT).show()
+                Log.v(TAG, "No tip percentage was entered")
             } else {
                 val costOfService = etCostOfService.text.toString().toDouble()
                 val tip = calculateTip()
+                Log.v(TAG, "Tip amount: $tip")
+
                 val total = costOfService + tip
+                Log.v(TAG, "Tip plus service cost: $total")
 
                 """${"$"}${
                     String.format(
